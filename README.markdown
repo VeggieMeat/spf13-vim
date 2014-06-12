@@ -22,7 +22,7 @@ Great care has been taken to ensure that each plugin plays nicely with others, a
 Lastly (and perhaps, most importantly) It is completely cross platform. It works well on Windows, Linux and OSX without any modifications or additional configurations. If you are using [MacVim] or Gvim additional features are enabled. So regardless of your environment just clone and run.
 
 # spf13-vim 3.0
-January 2012 spf13-vim released it's third major iteration. **This is important as it requires a reinstall**, but trust me it's worth it.
+January 2012 spf13-vim released its third major iteration. **This is important as it requires a reinstall**, but trust me it's worth it.
 
 The biggest change is the switch from using git submodules to using the excellent [Vundle] system. While git submodules seemed like a good idea at the time, it wasn't. It was always problematic. Additionally because a submodule points to a refspec and not a branch, it was a constant maintenance nightmare to keep everything up to date.
 
@@ -54,7 +54,17 @@ If you have a bash-compatible shell you can run the script directly:
 
 ## Installing on Windows
 
-On Windows and \*nix [Git] and [Curl] are required. Also, if you haven't already, you'll need to install [Vim].
+On Windows and \*nix [Git] and [Curl] are required. Also, if you haven't already, you'll need to install [Vim].  
+The quickest option to install all three dependencies ([Git], [Curl], [Vim] and [spf13-vim]) via [Chocolatey] NuGet and the [spf13.vim package]. After running the [Chocolatey] install, execute the following commands on the _command prompt_:
+
+    cinst git
+    cinst curl
+    cinst ctags
+    cinst spf13.vim
+
+_Note: The spf13.vim package will install Vim also! _
+
+If you want to install [msysgit], [Curl] and [spf13-vim] individually, follow the directions below.
 
 ### Installing dependencies
 
@@ -170,11 +180,12 @@ There is an additional tier of customization available to those who want to main
 fork of spf13-vim specialized for a particular group. These users can create `.vimrc.fork`
 and `.vimrc.bundles.fork` files in the root of their fork.  The load order for the configuration is:
 
-1. `.vimrc.before.local` - before user configuration
+1. `.vimrc.before` - spf13-vim before configuration
 2. `.vimrc.before.fork` - fork before configuration
-3. `.vimrc.bundles.local` - local user bundle configuration
-4. `.vimrc.bundles.fork` - fork bundle configuration
-5. `.vimrc.bundles` - spf13-vim bundle configuration
+3. `.vimrc.before.local` - before user configuration
+4. `.vimrc.bundles` - spf13-vim bundle configuration
+5. `.vimrc.bundles.fork` - fork bundle configuration
+6. `.vimrc.bundles.local` - local user bundle configuration
 6. `.vimrc` - spf13-vim vim configuration
 7. `.vimrc.fork` - fork vim configuration
 8. `.vimrc.local` - local user configuration
@@ -298,7 +309,7 @@ NeoComplCache is an amazing autocomplete plugin with additional support for snip
 
 YouCompleteMe is another amazing completion engine. It is slightly more involved to set up as it contains a binary component that the user needs to compile before it will work. As a result of this however it is very fast.
 
-To enable YouCompleteMe add `YouCompleteMe` to your list of groups by overriding it in your `.vimrc.bundles.local` like so: `let g:spf13_bundle_groups=['general', 'programming', 'misc', 'scala', 'YouCompleteMe']` This is just an example. Remember to choose the other groups you want here.
+To enable YouCompleteMe add `youcompleteme` to your list of groups by overriding it in your `.vimrc.before.local` like so: `let g:spf13_bundle_groups=['general', 'programming', 'misc', 'scala', 'youcompleteme']` This is just an example. Remember to choose the other groups you want here.
 
 Once you have done this you will need to get Vundle to grab the latest code from git. You can do this by calling `:BundleInstall!`. You should see YouCompleteMe in the list.
 
@@ -389,7 +400,7 @@ Tabularize lets you align statements on their equal signs and other characters
 
 spf13-vim includes the Tagbar plugin. This plugin requires exuberant-ctags and will automatically generate tags for your open files. It also provides a panel to navigate easily via tags
 
-**QuickStart** `CTRL-]` while the cursor is on a keyword (such as a function name) to jump to it's definition.
+**QuickStart** `CTRL-]` while the cursor is on a keyword (such as a function name) to jump to its definition.
 
 **Customizations**:
   * spf13-vim binds `<Leader>tt` to toggle the tagbar panel
@@ -494,6 +505,8 @@ Here's some tips if you've never used VIM before:
 [Curl]:http://curl.haxx.se
 [Vim]:http://www.vim.org/download.php#pc
 [msysgit]:http://code.google.com/p/msysgit
+[Chocolatey]: http://chocolatey.org/
+[spf13.vim package]: http://chocolatey.org/packages/spf13.vim
 [MacVim]:http://code.google.com/p/macvim/
 [spf13-vim]:https://github.com/spf13/spf13-vim
 [contributors]:https://github.com/spf13/spf13-vim/contributors
@@ -518,6 +531,7 @@ Here's some tips if you've never used VIM before:
 [Airline]:https://github.com/bling/vim-airline
 [Powerline]:https://github.com/lokaltog/powerline
 [Powerline Fonts]:https://github.com/Lokaltog/powerline-fonts
+[AutoClose]:https://github.com/spf13/vim-autoclose
 
 [spf13-vim-img]:https://i.imgur.com/UKToY.png
 [spf13-vimrc-img]:https://i.imgur.com/kZWj1.png
